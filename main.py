@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import requests
 import requests_cache
 from flask import Flask
@@ -13,7 +13,6 @@ from feedgen.feed import FeedGenerator
 from lxml.html import fromstring
 import json
 
-
 requests_cache.install_cache(expire_after=300)
 
 app = Flask(__name__)
@@ -24,11 +23,9 @@ ENTRY_URL = 'https://zen.yandex.ru/media/{publisherId}/{titleForUrl}-{id}'
 
 TG_URL = 'http://t.me/iv?url={url}&rhash={rhash}'
 
-
 @app.route('/')
 def main_page():
     return "Just an empty page :\ "
-
 
 @app.route('/zenrss', methods=['GET'])
 def get_rss():
@@ -48,10 +45,10 @@ def get_rss():
     if tg_rhash and not re.match(r'^[a-fA-F\d]+$', tg_rhash):
         return 'Invalid tg_rhash. Please, check rhash value from instant view template'
 
-    if not re.match(r'^/(media/)?(id/[\da-f]+|[a-z\d_]+)/?$', parsed_url.path):
-        return 'Url is unsupported. Supported formats:<br>' \
-               '• https://zen.yandex.ru/media/id/01234567890abcdef0123456 <br>' \
-               '• https://zen.yandex.ru/media/nickname'
+    # if not re.match(r'^/(media/)?(id/[\da-f]+|[a-z\d_]+)/?$', parsed_url.path):
+    #     return 'Url is unsupported. Supported formats:<br>' \
+    #            '• https://zen.yandex.ru/media/id/01234567890abcdef0123456 <br>' \
+    #            '• https://zen.yandex.ru/media/nickname'
 
     resp = requests.get(zen_url, headers={
         'User-Agent': 'TelegramBot (like TwitterBot)'
@@ -80,7 +77,7 @@ def get_rss():
     feed = FeedGenerator()
     feed.id('http://zen.yandex.ru/')
     feed.title(publisher.get('title'))
-    feed.subtitle(publisher.get('description').strip())
+    feed.subtitle((publisher.get('description') or 'News').strip())
     feed.language('ru')
     feed.author({'name': '-', 'email': '-'})
     feed.link(href=zen_url, rel='alternate')
