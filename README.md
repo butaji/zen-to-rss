@@ -22,4 +22,4 @@ Example:
 where `tg_rhash` - unique instant view template identifier
 
 ## Deployment
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/mercuree/zen-to-rss)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/butaji/zen-to-rss)

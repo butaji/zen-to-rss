@@ -1,7 +1,7 @@
 {
   "name": "Zen to rss converter",
   "description": "Converts Yandex zen blog entries to rss feed",
-  "repository": "https://github.com/mercuree/zen-to-rss",
+  "repository": "https://github.com/butaji/zen-to-rss",
   "keywords": ["yandex", "zen", "python", "rss", "telegram"],
   "env":{
     "TZ": "Europe/Moscow"
